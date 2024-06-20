@@ -9,7 +9,7 @@ export const PenaltyList = (props: PenaltyListProps) => {
     return (
         <div className="h-full p-10 flex flex-col align-middle justify-space gap-10 bg-white">
             <h1 className="text-8xl text-center text-black">Wybór zadania</h1>
-            <div className="grid grid-cols-6 gap-7 text-black">
+            <div className="mx-36 p-5 grid grid-cols-7 gap-7 text-black">
                 {props.penalties.map((a, i) => (
                     <PenaltyBox key={i} penalty={a} index={i} penaltySelect={props.selectPenalty} />
                 ))}
