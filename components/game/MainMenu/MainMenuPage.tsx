@@ -13,10 +13,13 @@ export const MainMenuPage = (props : MainMenuPageProps) => {
     },[rerenderCount])
 
     return (
-        <div className="p-20 h-full flex flex-col items-center gap-10">
-            <h1 className="text-8xl font-bold basis-1/6">Postaw na miłość</h1>
+        <div className="p-20 h-full flex flex-col items-center gap-10 bg-main bg-black bg-opacity-10 overflow-hidden">
+            <div className="text-8xl font-bold basis-1/6 text-yellow-500 title-shadow text-center">
+                <div>Postaw <br/>na <br/> miłość</div>
+                <div className="text-red-500 text-5xl">Edycja biedna</div>
+            </div>
             <div className="flex h-full flex-col basis-4/6 gap-5 w-full">
-                <div className="flex h-full flex-row items-center">
+                <div className="flex h-full flex-row items-center w-1/4 justify-center bg-black bg-opacity-60 p-5 z-10">
                     <div className="flex flex-col gap-5">
                         <button 
                             className="bg-slate-100 hover:bg-slate-300 text-black font-bold py-8 px-20 rounded" 
@@ -27,7 +30,7 @@ export const MainMenuPage = (props : MainMenuPageProps) => {
                             saveExists &&
                             <>
                                 <button 
-                                    className="bg-slate-100 hover:bg-slate-300 text-black font-bold py-8 px-20 rounded"
+                                    className="bg-slate-100 hover:bg-slate-300 text-black font-bold py-8 w-full rounded"
                                     onClick={() => {
                                         props.clearSave();
                                         forceRerender();
@@ -35,7 +38,7 @@ export const MainMenuPage = (props : MainMenuPageProps) => {
                                         Usuń zapis
                                 </button>
                                 <button 
-                                    className="bg-slate-100 hover:bg-slate-300 text-black font-bold py-8 px-16 rounded" 
+                                    className="bg-slate-100 hover:bg-slate-300 text-black font-bold py-8 w-full rounded" 
                                     onClick={() => props.onGameStart(true)}>
                                         Kontynuuj grę
                                 </button>

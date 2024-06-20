@@ -1,15 +1,35 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
-export type AudioPlayerFactory = (src?: string) => HTMLAudioElement;
-const getAudio = (audio: HTMLAudioElement, src: string = "") => {
+export type PlayAudio = (src?: string) => void;
+const play = async (audio: HTMLAudioElement, src: string = "") => {
     if (audio && !audio.paused) {
         audio.pause();
     }
+    try{
+        if(audio.src != src){
+            audio.src = src;
+        }
+        audio.currentTime = 0;
+        await audio.play();
+    }
+    catch(err){
 
-    audio.src = src;
-    audio.currentTime = 0;
-    return audio;
+    }
 };
+
+const pause = async (audio: HTMLAudioElement, src: string = "") => {
+    if (audio && !audio.paused) {
+        audio.pause();
+    }
+    try{
+        audio.src = "";
+        audio.currentTime = 0;
+    }
+    catch(err){
+
+    }
+};
+
 export const useAudioPlayer = () => {
     const [audio] = useState<HTMLAudioElement>(() => new Audio());
 
@@ -20,5 +40,13 @@ export const useAudioPlayer = () => {
         }
     })
 
-    return (src?: string) => getAudio(audio, src);
+    const playAudio = useCallback((src: string) => {
+        play(audio, src);
+    }, [audio]);
+
+    const pauseAudio = useCallback(() => {
+        pause(audio);
+    }, [audio]);
+
+    return [playAudio as PlayAudio, pauseAudio] as const;
 };

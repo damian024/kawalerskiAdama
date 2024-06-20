@@ -1,5 +1,4 @@
 import { useState, useEffect, useCallback } from "react";
-import { AudioPlayerFactory, useAudioPlayer } from "./useAudioPlayer";
 
 export type GameStateUpdater<T> = (newState: T, timeout?: number) => void;
 export const useGameState = <T,>(startValue : T) => {
@@ -19,16 +18,3 @@ export const useGameState = <T,>(startValue : T) => {
 }
 
 
-export type GameStatusChangeHandler<T> = (state: T, setState: GameStateUpdater<T>, player: AudioPlayerFactory ) => void;
-
-export const useGameStateMachine = <T,>(startState : T, afterChange: GameStatusChangeHandler<T>) => {
-    const [state, setState] = useGameState<T>(startState);
-    const audioPlayer = useAudioPlayer();
-
-    useEffect(() => {
-        afterChange(state, setState, audioPlayer);
-        return;
-    }, [state, setState, audioPlayer]);
-
-    return [state, setState, audioPlayer] as const;
-}

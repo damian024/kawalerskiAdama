@@ -24,7 +24,7 @@ export const QuestionGameStatus = (props: QuestionTimerProps) => {
                     key={1}
                     disableColors={true}
                     paused={false} 
-                    timeLimit={15}
+                    timeLimit={3}
                     onTimeLeft={() => props.onTimerEvent?.(QuestionGameState.Started)}/>
             </div>
         )

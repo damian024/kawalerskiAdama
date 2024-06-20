@@ -6,7 +6,7 @@ type QuestionListProps = {
 };
 export const QuestionsList = (props: QuestionListProps) => {
     return (
-        <div className="mb-10 h-full p-10 flex flex-col align-middle justify-space gap-10">
+        <div className="mb-10 h-full p-10 flex flex-col align-middle justify-space gap-10 ">
             <h1 className="text-8xl font-bold text-center text-black">Wybór pytania</h1>
             <div className="p-5 mx-36 grid grid-cols-8 gap-7 text-black">
                 {props.questions.map((a, i) => (

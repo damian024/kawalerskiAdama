@@ -22,7 +22,7 @@ export enum QuestionGameState {
     Completed
 }
 
-const getButtonState = (gameState : QuestionGameState, currentIndex: number, selectedIndex: number, winningIndex : number) => {
+const getButtonState = (gameState : QuestionGameState, currentIndex: number, winningIndex : number) => {
     if(gameState == QuestionGameState.Prepare || gameState == QuestionGameState.QuestionShown)
         return ButtonState.HiddenText;
 
@@ -44,13 +44,12 @@ type SelectedQuestionProps = {
     questionCompleted: (success: boolean) => void;
 };
 export const SelectedQuestion = (props: SelectedQuestionProps) => {
-    const [selectedAnswerIndex, setSelectedAnswerIndex] = useState<number>(-1);
     const [gameState, setGameState] = useQuestionGameStateMachine();
     const winningIndex = props.question.validAnswerIndex;
 
     useEffect(() => {
         if(gameState == QuestionGameState.Completed)
-            props.questionCompleted(props.question.validAnswerIndex == selectedAnswerIndex);
+            props.questionCompleted(true);
     },[gameState])
 
     return (
@@ -61,7 +60,7 @@ export const SelectedQuestion = (props: SelectedQuestionProps) => {
                         onTimerEvent={(newState : QuestionGameState) => {setGameState(newState)}}
                         timeLimit={props.question.time} 
                         state={gameState} 
-                        paused={selectedAnswerIndex != -1}/>
+                        paused={false}/>
                 </div>
                 <div className="basis-1/2 flex flex-row justify-center align-bottom">
                     <Image 
@@ -86,7 +85,7 @@ export const SelectedQuestion = (props: SelectedQuestionProps) => {
                                     <AnswerBox
                                             question={props.question}
                                             answerIndex={i}
-                                            state={getButtonState(gameState, i, selectedAnswerIndex, winningIndex)} />
+                                            state={getButtonState(gameState, i, winningIndex)} />
                                 </div>
                             ))
                         }

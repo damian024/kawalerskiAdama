@@ -1,6 +1,7 @@
 import { Sounds } from "@/common/sounds";
-import { AudioPlayerFactory, useAudioPlayer } from "@/hooks/useAudioPlayer";
-import { GameStateUpdater, useGameState } from "@/hooks/useGameState";
+import { PlayAudio } from "@/hooks/useAudioPlayer";
+import { GameStateUpdater } from "@/hooks/useGameState";
+import { useGameStateMachine } from "@/hooks/useGameStateMachine";
 import { useEffect } from "react";
 
 export enum PenaltyGameStatus {
@@ -11,39 +12,21 @@ export enum PenaltyGameStatus {
     Failed,
     ChickenPenalty,
     FailedPenalty,
-    Finished
+    Completed
 }
 
-const afterStateChanged = (gameState: PenaltyGameStatus, setGameState: GameStateUpdater<PenaltyGameStatus>, player: AudioPlayerFactory) => {
-    player().pause();
-
-    if (gameState == PenaltyGameStatus.Passed) {
-        player(Sounds.MISSION_PASSED).play();
-        return setGameState(PenaltyGameStatus.Finished, 10000);
+const handleTransition = (oldGameState: PenaltyGameStatus, newGameState: PenaltyGameStatus, setGameState: GameStateUpdater<PenaltyGameStatus>, player: PlayAudio) => {
+    if (newGameState == PenaltyGameStatus.Passed) {
+        player(Sounds.MISSION_PASSED);
+        return setGameState(PenaltyGameStatus.Completed, 10000);
     }
 
-    if (gameState == PenaltyGameStatus.Failed) {
-        player(Sounds.MISSION_FAILED).play();
+    if (newGameState == PenaltyGameStatus.Failed) {
+        player(Sounds.MISSION_FAILED);
         return setGameState(PenaltyGameStatus.FailedPenalty, 5000);
     }
 };
 
 export const usePenaltyGameStateMachine = () => {
-    const [state, setState] = useGameState(PenaltyGameStatus.Waiting);
-    const player = useAudioPlayer();
-
-    useEffect(() => {
-        afterStateChanged(state, setState, player);
-        return;
-    }, [state,setState, player]);
-
-    const makeTransition = async (gameState: PenaltyGameStatus) => {
-        if (gameState == state) {
-            return;
-        }
-
-        setState(gameState);
-    };
-
-    return [state, makeTransition, player] as const;
+    return useGameStateMachine(PenaltyGameStatus.Waiting, handleTransition);
 };

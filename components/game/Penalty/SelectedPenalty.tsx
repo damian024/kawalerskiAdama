@@ -15,7 +15,7 @@ type SelectedPenaltyProps = {
 };
 
 export const SelectedPenalty = (props: SelectedPenaltyProps) => {
-    var [gameState, setGameState, audioPlayer] = usePenaltyGameStateMachine();
+    var [gameState, setGameState, playAudio] = usePenaltyGameStateMachine();
     var [penaltyGlassIds, setPenaltyGlassIds] = useState<number[]>([]);
 
     const showTaskText = gameState == PenaltyGameStatus.Waiting ||
@@ -23,7 +23,7 @@ export const SelectedPenalty = (props: SelectedPenaltyProps) => {
         gameState == PenaltyGameStatus.Started;
 
     useEffect(() => {
-        if(gameState == PenaltyGameStatus.Finished)
+        if(gameState == PenaltyGameStatus.Completed)
             props.onCompleted();
 
         if(gameState == PenaltyGameStatus.FailedPenalty){
@@ -41,7 +41,7 @@ export const SelectedPenalty = (props: SelectedPenaltyProps) => {
                 <div className="text-8xl">Czas przeczyścić leja</div>
                 <button 
                     className="bg-green-500 hover:bg-green-700 text-5xl text-white font-bold py-16 px-36 rounded" 
-                    onClick={() => setGameState(PenaltyGameStatus.Finished)}>
+                    onClick={() => setGameState(PenaltyGameStatus.Completed)}>
                         Powrót do gry
                 </button>
             </div>
@@ -69,7 +69,7 @@ export const SelectedPenalty = (props: SelectedPenaltyProps) => {
                 </div>
                 <button 
                     className="bg-green-500 hover:bg-green-700 text-5xl text-white font-bold py-16 px-36 rounded" 
-                    onClick={() => setGameState(PenaltyGameStatus.Finished)}>
+                    onClick={() => setGameState(PenaltyGameStatus.Completed)}>
                         Powrót do gry
                 </button>
             </div>
@@ -98,7 +98,7 @@ export const SelectedPenalty = (props: SelectedPenaltyProps) => {
                                 timeLimit={10} 
                                 onTick={(timeLeft) => {
                                     if(timeLeft == 4)
-                                        audioPlayer(Sounds.GO).play();
+                                        playAudio(Sounds.GO)
 
                                 }}
                                 onTimeLeft={() => setGameState(PenaltyGameStatus.Started)}/>

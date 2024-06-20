@@ -20,7 +20,7 @@ export const Game = () => {
     const [gameState, setGameState] = useState<GameState>(GameState.MainMenu);
 
     useEffect(() => {
-        if(Config.penalties == penalties || Config.questions == questions)
+        if(Config.penalties == penalties && Config.questions == questions)
             return;
         localStorage.setItem("save", JSON.stringify({penalties, questions}));
     },[penalties, questions])
