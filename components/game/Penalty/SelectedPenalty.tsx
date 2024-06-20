@@ -30,7 +30,7 @@ export const SelectedPenalty = (props: SelectedPenaltyProps) => {
             let glassCount = Math.floor(Math.random()* 4) + 1;
             setPenaltyGlassIds([...new Array(glassCount)].map(x => Math.floor(Math.random() * 10) + 1 ))
         }
-    },[gameState]);
+    },[gameState, props.onCompleted, setPenaltyGlassIds]);
 
     const showReadyTimer = gameState == PenaltyGameStatus.Waiting || gameState == PenaltyGameStatus.Prepairing;
     const canResign = gameState != PenaltyGameStatus.Failed && gameState != PenaltyGameStatus.Passed;
@@ -55,8 +55,8 @@ export const SelectedPenalty = (props: SelectedPenaltyProps) => {
                 <div className="text-8xl">Wypij wskazane kieliszki</div>
                 <div className="flex flex-row">
                     {
-                        penaltyGlassIds.map(x => 
-                                <div className="relative w-40 h-40 rounded-full border-2 overflow-hidden">
+                        penaltyGlassIds.map((x,i) => 
+                                <div key={i} className="relative w-40 h-40 rounded-full border-2 overflow-hidden">
                                     <Image 
                                         className="object-cover w-full h-full"
                                         alt="Picture of the author"

@@ -6,7 +6,7 @@ import { Sounds } from "@/common/sounds";
 
 
 
-const useStateFlow = (gameState: QuestionGameState, setGameState: (newState: QuestionGameState, timeout?: number | undefined) => unknown, player: AudioPlayerFactory) => {
+const handleTransition = (gameState: QuestionGameState, setGameState: (newState: QuestionGameState, timeout?: number | undefined) => unknown, player: AudioPlayerFactory) => {
     player().pause();
 
     if (gameState == QuestionGameState.Prepare) {
@@ -58,9 +58,9 @@ export const useQuestionGameStateMachine = () => {
     const player = useAudioPlayer();
 
     useEffect(() => {
-        useStateFlow(state, setState, player);
+        handleTransition(state, setState, player);
         return;
-    }, [state]);
+    }, [state, setState, player]);
 
     const makeTransition = async (gameState: QuestionGameState) => {
         if (gameState == state) {

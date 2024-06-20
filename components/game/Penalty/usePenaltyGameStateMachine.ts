@@ -35,7 +35,7 @@ export const usePenaltyGameStateMachine = () => {
     useEffect(() => {
         afterStateChanged(state, setState, player);
         return;
-    }, [state]);
+    }, [state,setState, player]);
 
     const makeTransition = async (gameState: PenaltyGameStatus) => {
         if (gameState == state) {

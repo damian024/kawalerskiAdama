@@ -80,9 +80,10 @@ export const SelectedQuestion = (props: SelectedQuestionProps) => {
                     <div className="flex flex-row basis-1/2 gap-10">
                         { 
                             props.question.answers.map((a, i) => (
-                                <div className="basis-1/3 h-full">
+                                <div 
+                                    key={i} 
+                                    className="basis-1/3 h-full">
                                     <AnswerBox
-                                            key={i}
                                             question={props.question}
                                             answerIndex={i}
                                             state={getButtonState(gameState, i, selectedAnswerIndex, winningIndex)} />

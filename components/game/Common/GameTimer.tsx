@@ -41,7 +41,7 @@ export const GameTimer = (props: GameTimerProps) => {
         props.onTick?.(timeLeft);
         if(timeLeft == 0)
             props.onTimeLeft?.();
-    },[timeLeft])
+    },[timeLeft, props.onTick, props.onTimeLeft])
     return (
         <CircularProgress color={color} progress={progress} text={text} />
     );
