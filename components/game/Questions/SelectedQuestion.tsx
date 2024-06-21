@@ -53,8 +53,8 @@ export const SelectedQuestion = (props: SelectedQuestionProps) => {
     },[gameState])
 
     return (
-        <div className="h-full flex flex-col bg-questions-selected gap-5">
-            <div className="flex flex-row basis-2/5 justify-between items-center m-5">
+        <div className="p-10 h-full flex flex-col justify-center bg-questions-selected gap-5">
+            <div className="flex flex-row basis-1/2 gap-10 justify-between items-center m-5">
                 <div className="h-full basis-1/2 flex flex-row justify-center items-center">
                     <QuestionGameStatus 
                         onTimerEvent={(newState : QuestionGameState) => {setGameState(newState)}}
@@ -62,14 +62,14 @@ export const SelectedQuestion = (props: SelectedQuestionProps) => {
                         state={gameState} 
                         paused={false}/>
                 </div>
-                <div className="basis-1/2 flex flex-row justify-center align-bottom">
+                <div className="h-full w-full basis-1/2 flex flex-row justify-center align-bottom">
                     <Image 
-                        className="object-contain w-2/5"
+                        className="object-cover scale-110"
                         alt="Picture of the author"
                         src={profilePic}/>
                 </div>
             </div>
-            <div className="flex flex-row basis-2/5 mt-20 m-10 gap-5">
+            <div className="flex flex-row basis-1/2 gap-5">
                 <div className="flex flex-col gap-10 w-full">
                     <div className="basis-1/2">
                         <div className="p-5 flex h-full text-5xl text-center bg-gradient-to-tr from-orange-300 via-black via-0% to-cyan-700 justify-center items-center text-white border rounded-lg">
