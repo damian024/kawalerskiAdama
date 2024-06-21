@@ -441,7 +441,7 @@ export const Config: GameConfig= {
         },
         {
             id: 17,
-            text : "Uwiodłeś któregoś z nas, puść romantyczną muzykę i wybierz jedną osobę która będzie z tą realizowała kolejne zadanie",
+            text : "Uwiodłeś któregoś z nas, puść romantyczną muzykę i wybierz jedną osobę która będzie z tobą realizowała kolejne zadanie",
             time : 30
         },
         {
