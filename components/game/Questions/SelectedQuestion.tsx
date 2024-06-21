@@ -114,7 +114,7 @@ type AnswerBoxProps = {
 const AnswerBox = (props: AnswerBoxProps) => {
     const text = props.state == ButtonState.HiddenText ? "" : props.question.answers[props.answerIndex]
     return (
-        <div className={`${getColor(props.state)} p-4 h-full text-white text-3xl border rounded-lg flex flex-col justify-center text-center items`}>
+        <div className={`${getColor(props.state)} p-4 h-full text-white text-3xl border rounded-lg flex flex-col justify-evenly text-center items`}>
                 <span className="text-yellow-500">{String.fromCharCode(65 + props.answerIndex)} </span>
                 <span>{text}</span>
         </div>
