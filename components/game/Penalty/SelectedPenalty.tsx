@@ -134,20 +134,23 @@ export const SelectedPenalty = (props: SelectedPenaltyProps) => {
 
             </div>
             <div className="text-5xl w-full bg-slate-300 flex flex-col items-center align-middle justify-center p-20">
-                <div className="text-center leading-relaxed font-bold">
-                    { showTaskText ?  props.penalty.text : "" }
-                </div>
+                {showTaskText &&
+                    <div className="text-center flex flex-col leading-relaxed font-bold">
+                        <span>{props.penalty.text}</span>
+                        <span className="text-2xl">Czas na wykonanie to {props.penalty.time} sekund</span>
+                    </div>
+                }
                 {
                     gameState == PenaltyGameStatus.Passed && 
-                        <div className={`py-5 text-green-500 leading-relaxed font-bold text-center text-8xl ${myFont.className}`}>
-                            Mission passed!
+                        <div className={`py-5 text-green-500 leading-relaxed font-bold text-center text-9xl ${myFont.className}`}>
+                            Mission passed!<br/>
                             Respect up
                         </div>
                 }
                 {
                     gameState == PenaltyGameStatus.Failed && 
-                        <div className={`py-5 text-red-500 leading-relaxed font-bold text-center text-8xl ${myFont.className}`}>
-                            Mission failed!
+                        <div className={`py-5 text-red-500 leading-relaxed font-bold text-center text-9xl ${myFont.className}`}>
+                            Mission failed!<br/>
                             Respect down
                         </div>
                 }

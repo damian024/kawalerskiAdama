@@ -246,7 +246,7 @@ export const Config: GameConfig= {
             id: 21,
             text : "Na jakieś pozycji grała Karo w siatkówkę?",
             time: 60,
-            validAnswerIndex: 2,
+            validAnswerIndex: 0,
             answers: [
                 "Rozgrywająca, ale lubiąca bronić",
                 "Środkowa, ale nie lubiąca serwować",
@@ -329,7 +329,29 @@ export const Config: GameConfig= {
                 "49,5 km2",
                 "53,7 km2",
             ]
-        }
+        },
+        {
+            id: 30,
+            text : "Które zwierze śpi na stojąco",
+            time: 60,
+            validAnswerIndex: 0,
+            answers: [
+                "Zebra",
+                "Gepard",
+                "Biały lew",
+            ]
+        },
+        {
+            id: 31,
+            text : "Które zwierze nie ma rogów",
+            time: 60,
+            validAnswerIndex: 1,
+            answers: [
+                "Babirussa",
+                "Palczak",
+                "Suhak",
+            ]
+        },
     ],
     penalties: [
         {
@@ -378,6 +400,11 @@ export const Config: GameConfig= {
             time : 90        
         },
         {
+            id: 9,
+            text : "Strasznie zachlałeś, ale musisz wyjść szybko z domu bo Karolina czeka. Przypadkowo ubrałeś wszystko na lewą stronę",
+            time : 60        
+        },
+        {
             id: 10,
             text : "Wykonaj bieg pijaka - ktoś z widowni obraca Cię kilka razy i musisz przebiec do znacznika, ominąć go i wrócić",
             time : 30        
@@ -414,8 +441,8 @@ export const Config: GameConfig= {
         },
         {
             id: 17,
-            text : "Odpoczynek - wybierz jedną osobę",
-            time : 15
+            text : "Uwiodłeś któregoś z nas, puść romantyczną muzykę i wybierz jedną osobę która będzie z tą realizowała kolejne zadanie",
+            time : 30
         },
         {
             id: 18,
@@ -426,6 +453,11 @@ export const Config: GameConfig= {
             id: 19,
             text : "Wybierz jedną osobę, zostaje kapitanem przeciwnej drużyny i gramy we flanki",
             time : 600,
+        },
+        {
+            id: 20,
+            text : "Wytrzymaj bez mrugania",
+            time : 60,
         }
     
     ]
